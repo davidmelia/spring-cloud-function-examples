@@ -28,7 +28,7 @@ public class FxRateProducerApplication {
     SpringApplication.run(FxRateProducerApplication.class, args);
   }
 
-  @Bean
+  // @Bean
   public Supplier<Flux<String>> output() {
     return () -> {
       log.info("**** WHAT IS OUTPUT FOR?? WHY DO I NEED TO DEFINE THIS??? ****");
