@@ -15,16 +15,16 @@ import uk.co.dave.fxrate.domain.FxRate;
 @Slf4j
 public class FxRatePublisher {
 
-  private final MessageChannel fxRateOut;
+  private final MessageChannel fxRate2Out;
 
-  public FxRatePublisher(@Output(FX_RATE_OUT) final MessageChannel fxRateOut) {
-    this.fxRateOut = fxRateOut;
+  public FxRatePublisher(@Output(FX_RATE_OUT) final MessageChannel fxRate2Out) {
+    this.fxRate2Out = fxRate2Out;
   }
 
   public void publish(final FxRate event) {
     final Message<FxRate> message = MessageBuilder.withPayload(event).setHeaderIfAbsent(KafkaHeaders.MESSAGE_KEY, FxRate.class.getSimpleName()).build();
     try {
-      this.fxRateOut.send(message);
+      this.fxRate2Out.send(message);
       log.info("Message sent to binding");
     } catch (final Throwable th) {
       log.error("Exception occurred while sending message to the channel {} root cause is {}", FX_RATE_OUT, th.getCause().getMessage());

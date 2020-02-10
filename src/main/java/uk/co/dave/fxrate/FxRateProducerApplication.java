@@ -1,6 +1,7 @@
 package uk.co.dave.fxrate;
 
 import com.amazonaws.services.lambda.runtime.events.ScheduledEvent;
+import java.time.Duration;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import lombok.extern.slf4j.Slf4j;
@@ -41,7 +42,7 @@ public class FxRateProducerApplication {
     return flux -> flux.doOnNext(t -> {
       log.info("****SPRING CLOUD FUNCTION 3 ****");
       fxRateService.publishLatestFxRates();
-    }).flatMap(x -> Mono.just("OK"));
+    }).delaySequence(Duration.ofSeconds(5)).doOnNext(t -> log.info("Waiting Over.")).flatMap(x -> Mono.just("OK"));
   }
 
 }
