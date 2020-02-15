@@ -10,6 +10,7 @@ import org.springframework.messaging.MessageHeaders;
 import org.springframework.messaging.handler.annotation.Headers;
 import org.springframework.stereotype.Component;
 import uk.co.dave.consumer.fxrate.channels.FxRateConsumerBinding;
+import uk.co.dave.consumer.fxrate.consumer.avro.AvroFxRateEvent;
 import uk.co.dave.consumer.fxrate.consumer.json.JsonFxRateEvent;
 
 
@@ -24,4 +25,12 @@ public class FxRateConsumer {
     Acknowledgment ack = headers.get(KafkaHeaders.ACKNOWLEDGMENT, Acknowledgment.class);
     ack.acknowledge();
   }
+
+  @StreamListener(FxRateConsumerBinding.AVRO_FX_RATES_IN)
+  public void consumeAvro(final List<AvroFxRateEvent> events, @Headers MessageHeaders headers) {
+    log.info("avroFxRateEvents = {}", events, headers);
+    Acknowledgment ack = headers.get(KafkaHeaders.ACKNOWLEDGMENT, Acknowledgment.class);
+    ack.acknowledge();
+  }
+
 }
