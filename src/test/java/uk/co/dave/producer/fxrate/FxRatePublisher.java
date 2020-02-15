@@ -9,7 +9,7 @@ import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Component;
-import uk.co.dave.consumer.fxrate.domain.FxRate;
+import uk.co.dave.consumer.fxrate.consumer.json.JsonFxRateEvent;
 
 @Component
 @Slf4j
@@ -21,8 +21,8 @@ public class FxRatePublisher {
     this.fxRate2Out = fxRate2Out;
   }
 
-  public void publish(final FxRate event) {
-    final Message<FxRate> message = MessageBuilder.withPayload(event).setHeaderIfAbsent(KafkaHeaders.MESSAGE_KEY, FxRate.class.getSimpleName()).build();
+  public void publish(final JsonFxRateEvent event) {
+    final Message<JsonFxRateEvent> message = MessageBuilder.withPayload(event).setHeaderIfAbsent(KafkaHeaders.MESSAGE_KEY, JsonFxRateEvent.class.getSimpleName()).build();
     try {
       this.fxRate2Out.send(message);
       log.info("Message sent to binding");

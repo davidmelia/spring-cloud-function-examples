@@ -1,16 +1,16 @@
 {
-    "name": "FxRateEvent",
+    "name": "AvroFxRateEvent",
     "type":"record",
-    "namespace": "uk.co.dave.shared.fxrateevent",
+    "namespace": "uk.co.dave.consumer.fxrate.consumer.avro",
     "fields":[
         {
             "name":"fxRates",
             "type":{
                 "type": "array",
                 "items":{
-                    "name":"FxRate",
+                    "name":"AvroFxRate",
                     "type":"record",
-                    "namespace": "uk.co.dave.shared.fxrateevent",
+                    "namespace": "uk.co.dave.consumer.fxrate.consumer.avro",
                     "fields":[
                         {"name":"from", "type":"string"},
                         {"name":"to", "type":"string"},

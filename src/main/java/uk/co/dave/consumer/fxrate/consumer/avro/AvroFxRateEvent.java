@@ -3,7 +3,7 @@
  *
  * DO NOT EDIT DIRECTLY
  */
-package uk.co.dave.shared.fxrateevent;
+package uk.co.dave.consumer.fxrate.consumer.avro;
 
 import org.apache.avro.generic.GenericArray;
 import org.apache.avro.specific.SpecificData;
@@ -13,24 +13,24 @@ import org.apache.avro.message.BinaryMessageDecoder;
 import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
-public class FxRateEvent extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = 1690867365570476701L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"FxRateEvent\",\"namespace\":\"uk.co.dave.shared.fxrateevent\",\"fields\":[{\"name\":\"fxRates\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"record\",\"name\":\"FxRate\",\"fields\":[{\"name\":\"from\",\"type\":\"string\"},{\"name\":\"to\",\"type\":\"string\"},{\"name\":\"rate\",\"type\":{\"type\":\"bytes\",\"logicalType\":\"decimal\",\"precision\":7,\"scale\":6}}]}}}]}");
+public class AvroFxRateEvent extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
+  private static final long serialVersionUID = 6388194945386055555L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"AvroFxRateEvent\",\"namespace\":\"uk.co.dave.consumer.fxrate.consumer.avro\",\"fields\":[{\"name\":\"fxRates\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"record\",\"name\":\"AvroFxRate\",\"fields\":[{\"name\":\"from\",\"type\":\"string\"},{\"name\":\"to\",\"type\":\"string\"},{\"name\":\"rate\",\"type\":{\"type\":\"bytes\",\"logicalType\":\"decimal\",\"precision\":7,\"scale\":6}}]}}}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
 
-  private static final BinaryMessageEncoder<FxRateEvent> ENCODER =
-      new BinaryMessageEncoder<FxRateEvent>(MODEL$, SCHEMA$);
+  private static final BinaryMessageEncoder<AvroFxRateEvent> ENCODER =
+      new BinaryMessageEncoder<AvroFxRateEvent>(MODEL$, SCHEMA$);
 
-  private static final BinaryMessageDecoder<FxRateEvent> DECODER =
-      new BinaryMessageDecoder<FxRateEvent>(MODEL$, SCHEMA$);
+  private static final BinaryMessageDecoder<AvroFxRateEvent> DECODER =
+      new BinaryMessageDecoder<AvroFxRateEvent>(MODEL$, SCHEMA$);
 
   /**
    * Return the BinaryMessageEncoder instance used by this class.
    * @return the message encoder used by this class
    */
-  public static BinaryMessageEncoder<FxRateEvent> getEncoder() {
+  public static BinaryMessageEncoder<AvroFxRateEvent> getEncoder() {
     return ENCODER;
   }
 
@@ -38,7 +38,7 @@ public class FxRateEvent extends org.apache.avro.specific.SpecificRecordBase imp
    * Return the BinaryMessageDecoder instance used by this class.
    * @return the message decoder used by this class
    */
-  public static BinaryMessageDecoder<FxRateEvent> getDecoder() {
+  public static BinaryMessageDecoder<AvroFxRateEvent> getDecoder() {
     return DECODER;
   }
 
@@ -47,12 +47,12 @@ public class FxRateEvent extends org.apache.avro.specific.SpecificRecordBase imp
    * @param resolver a {@link SchemaStore} used to find schemas by fingerprint
    * @return a BinaryMessageDecoder instance for this class backed by the given SchemaStore
    */
-  public static BinaryMessageDecoder<FxRateEvent> createDecoder(SchemaStore resolver) {
-    return new BinaryMessageDecoder<FxRateEvent>(MODEL$, SCHEMA$, resolver);
+  public static BinaryMessageDecoder<AvroFxRateEvent> createDecoder(SchemaStore resolver) {
+    return new BinaryMessageDecoder<AvroFxRateEvent>(MODEL$, SCHEMA$, resolver);
   }
 
   /**
-   * Serializes this FxRateEvent to a ByteBuffer.
+   * Serializes this AvroFxRateEvent to a ByteBuffer.
    * @return a buffer holding the serialized data for this instance
    * @throws java.io.IOException if this instance could not be serialized
    */
@@ -61,30 +61,30 @@ public class FxRateEvent extends org.apache.avro.specific.SpecificRecordBase imp
   }
 
   /**
-   * Deserializes a FxRateEvent from a ByteBuffer.
+   * Deserializes a AvroFxRateEvent from a ByteBuffer.
    * @param b a byte buffer holding serialized data for an instance of this class
-   * @return a FxRateEvent instance decoded from the given buffer
+   * @return a AvroFxRateEvent instance decoded from the given buffer
    * @throws java.io.IOException if the given bytes could not be deserialized into an instance of this class
    */
-  public static FxRateEvent fromByteBuffer(
+  public static AvroFxRateEvent fromByteBuffer(
       java.nio.ByteBuffer b) throws java.io.IOException {
     return DECODER.decode(b);
   }
 
-  @Deprecated public java.util.List<uk.co.dave.shared.fxrateevent.FxRate> fxRates;
+  @Deprecated public java.util.List<uk.co.dave.consumer.fxrate.consumer.avro.AvroFxRate> fxRates;
 
   /**
    * Default constructor.  Note that this does not initialize fields
    * to their default values from the schema.  If that is desired then
    * one should use <code>newBuilder()</code>.
    */
-  public FxRateEvent() {}
+  public AvroFxRateEvent() {}
 
   /**
    * All-args constructor.
    * @param fxRates The new value for fxRates
    */
-  public FxRateEvent(java.util.List<uk.co.dave.shared.fxrateevent.FxRate> fxRates) {
+  public AvroFxRateEvent(java.util.List<uk.co.dave.consumer.fxrate.consumer.avro.AvroFxRate> fxRates) {
     this.fxRates = fxRates;
   }
 
@@ -102,7 +102,7 @@ public class FxRateEvent extends org.apache.avro.specific.SpecificRecordBase imp
   @SuppressWarnings(value="unchecked")
   public void put(int field$, java.lang.Object value$) {
     switch (field$) {
-    case 0: fxRates = (java.util.List<uk.co.dave.shared.fxrateevent.FxRate>)value$; break;
+    case 0: fxRates = (java.util.List<uk.co.dave.consumer.fxrate.consumer.avro.AvroFxRate>)value$; break;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -111,7 +111,7 @@ public class FxRateEvent extends org.apache.avro.specific.SpecificRecordBase imp
    * Gets the value of the 'fxRates' field.
    * @return The value of the 'fxRates' field.
    */
-  public java.util.List<uk.co.dave.shared.fxrateevent.FxRate> getFxRates() {
+  public java.util.List<uk.co.dave.consumer.fxrate.consumer.avro.AvroFxRate> getFxRates() {
     return fxRates;
   }
 
@@ -120,52 +120,52 @@ public class FxRateEvent extends org.apache.avro.specific.SpecificRecordBase imp
    * Sets the value of the 'fxRates' field.
    * @param value the value to set.
    */
-  public void setFxRates(java.util.List<uk.co.dave.shared.fxrateevent.FxRate> value) {
+  public void setFxRates(java.util.List<uk.co.dave.consumer.fxrate.consumer.avro.AvroFxRate> value) {
     this.fxRates = value;
   }
 
   /**
-   * Creates a new FxRateEvent RecordBuilder.
-   * @return A new FxRateEvent RecordBuilder
+   * Creates a new AvroFxRateEvent RecordBuilder.
+   * @return A new AvroFxRateEvent RecordBuilder
    */
-  public static uk.co.dave.shared.fxrateevent.FxRateEvent.Builder newBuilder() {
-    return new uk.co.dave.shared.fxrateevent.FxRateEvent.Builder();
+  public static uk.co.dave.consumer.fxrate.consumer.avro.AvroFxRateEvent.Builder newBuilder() {
+    return new uk.co.dave.consumer.fxrate.consumer.avro.AvroFxRateEvent.Builder();
   }
 
   /**
-   * Creates a new FxRateEvent RecordBuilder by copying an existing Builder.
+   * Creates a new AvroFxRateEvent RecordBuilder by copying an existing Builder.
    * @param other The existing builder to copy.
-   * @return A new FxRateEvent RecordBuilder
+   * @return A new AvroFxRateEvent RecordBuilder
    */
-  public static uk.co.dave.shared.fxrateevent.FxRateEvent.Builder newBuilder(uk.co.dave.shared.fxrateevent.FxRateEvent.Builder other) {
+  public static uk.co.dave.consumer.fxrate.consumer.avro.AvroFxRateEvent.Builder newBuilder(uk.co.dave.consumer.fxrate.consumer.avro.AvroFxRateEvent.Builder other) {
     if (other == null) {
-      return new uk.co.dave.shared.fxrateevent.FxRateEvent.Builder();
+      return new uk.co.dave.consumer.fxrate.consumer.avro.AvroFxRateEvent.Builder();
     } else {
-      return new uk.co.dave.shared.fxrateevent.FxRateEvent.Builder(other);
+      return new uk.co.dave.consumer.fxrate.consumer.avro.AvroFxRateEvent.Builder(other);
     }
   }
 
   /**
-   * Creates a new FxRateEvent RecordBuilder by copying an existing FxRateEvent instance.
+   * Creates a new AvroFxRateEvent RecordBuilder by copying an existing AvroFxRateEvent instance.
    * @param other The existing instance to copy.
-   * @return A new FxRateEvent RecordBuilder
+   * @return A new AvroFxRateEvent RecordBuilder
    */
-  public static uk.co.dave.shared.fxrateevent.FxRateEvent.Builder newBuilder(uk.co.dave.shared.fxrateevent.FxRateEvent other) {
+  public static uk.co.dave.consumer.fxrate.consumer.avro.AvroFxRateEvent.Builder newBuilder(uk.co.dave.consumer.fxrate.consumer.avro.AvroFxRateEvent other) {
     if (other == null) {
-      return new uk.co.dave.shared.fxrateevent.FxRateEvent.Builder();
+      return new uk.co.dave.consumer.fxrate.consumer.avro.AvroFxRateEvent.Builder();
     } else {
-      return new uk.co.dave.shared.fxrateevent.FxRateEvent.Builder(other);
+      return new uk.co.dave.consumer.fxrate.consumer.avro.AvroFxRateEvent.Builder(other);
     }
   }
 
   /**
-   * RecordBuilder for FxRateEvent instances.
+   * RecordBuilder for AvroFxRateEvent instances.
    */
   @org.apache.avro.specific.AvroGenerated
-  public static class Builder extends org.apache.avro.specific.SpecificRecordBuilderBase<FxRateEvent>
-    implements org.apache.avro.data.RecordBuilder<FxRateEvent> {
+  public static class Builder extends org.apache.avro.specific.SpecificRecordBuilderBase<AvroFxRateEvent>
+    implements org.apache.avro.data.RecordBuilder<AvroFxRateEvent> {
 
-    private java.util.List<uk.co.dave.shared.fxrateevent.FxRate> fxRates;
+    private java.util.List<uk.co.dave.consumer.fxrate.consumer.avro.AvroFxRate> fxRates;
 
     /** Creates a new Builder */
     private Builder() {
@@ -176,7 +176,7 @@ public class FxRateEvent extends org.apache.avro.specific.SpecificRecordBase imp
      * Creates a Builder by copying an existing Builder.
      * @param other The existing Builder to copy.
      */
-    private Builder(uk.co.dave.shared.fxrateevent.FxRateEvent.Builder other) {
+    private Builder(uk.co.dave.consumer.fxrate.consumer.avro.AvroFxRateEvent.Builder other) {
       super(other);
       if (isValidValue(fields()[0], other.fxRates)) {
         this.fxRates = data().deepCopy(fields()[0].schema(), other.fxRates);
@@ -185,10 +185,10 @@ public class FxRateEvent extends org.apache.avro.specific.SpecificRecordBase imp
     }
 
     /**
-     * Creates a Builder by copying an existing FxRateEvent instance
+     * Creates a Builder by copying an existing AvroFxRateEvent instance
      * @param other The existing instance to copy.
      */
-    private Builder(uk.co.dave.shared.fxrateevent.FxRateEvent other) {
+    private Builder(uk.co.dave.consumer.fxrate.consumer.avro.AvroFxRateEvent other) {
       super(SCHEMA$);
       if (isValidValue(fields()[0], other.fxRates)) {
         this.fxRates = data().deepCopy(fields()[0].schema(), other.fxRates);
@@ -200,7 +200,7 @@ public class FxRateEvent extends org.apache.avro.specific.SpecificRecordBase imp
       * Gets the value of the 'fxRates' field.
       * @return The value.
       */
-    public java.util.List<uk.co.dave.shared.fxrateevent.FxRate> getFxRates() {
+    public java.util.List<uk.co.dave.consumer.fxrate.consumer.avro.AvroFxRate> getFxRates() {
       return fxRates;
     }
 
@@ -210,7 +210,7 @@ public class FxRateEvent extends org.apache.avro.specific.SpecificRecordBase imp
       * @param value The value of 'fxRates'.
       * @return This builder.
       */
-    public uk.co.dave.shared.fxrateevent.FxRateEvent.Builder setFxRates(java.util.List<uk.co.dave.shared.fxrateevent.FxRate> value) {
+    public uk.co.dave.consumer.fxrate.consumer.avro.AvroFxRateEvent.Builder setFxRates(java.util.List<uk.co.dave.consumer.fxrate.consumer.avro.AvroFxRate> value) {
       validate(fields()[0], value);
       this.fxRates = value;
       fieldSetFlags()[0] = true;
@@ -230,7 +230,7 @@ public class FxRateEvent extends org.apache.avro.specific.SpecificRecordBase imp
       * Clears the value of the 'fxRates' field.
       * @return This builder.
       */
-    public uk.co.dave.shared.fxrateevent.FxRateEvent.Builder clearFxRates() {
+    public uk.co.dave.consumer.fxrate.consumer.avro.AvroFxRateEvent.Builder clearFxRates() {
       fxRates = null;
       fieldSetFlags()[0] = false;
       return this;
@@ -238,10 +238,10 @@ public class FxRateEvent extends org.apache.avro.specific.SpecificRecordBase imp
 
     @Override
     @SuppressWarnings("unchecked")
-    public FxRateEvent build() {
+    public AvroFxRateEvent build() {
       try {
-        FxRateEvent record = new FxRateEvent();
-        record.fxRates = fieldSetFlags()[0] ? this.fxRates : (java.util.List<uk.co.dave.shared.fxrateevent.FxRate>) defaultValue(fields()[0]);
+        AvroFxRateEvent record = new AvroFxRateEvent();
+        record.fxRates = fieldSetFlags()[0] ? this.fxRates : (java.util.List<uk.co.dave.consumer.fxrate.consumer.avro.AvroFxRate>) defaultValue(fields()[0]);
         return record;
       } catch (org.apache.avro.AvroMissingFieldException e) {
         throw e;
@@ -252,8 +252,8 @@ public class FxRateEvent extends org.apache.avro.specific.SpecificRecordBase imp
   }
 
   @SuppressWarnings("unchecked")
-  private static final org.apache.avro.io.DatumWriter<FxRateEvent>
-    WRITER$ = (org.apache.avro.io.DatumWriter<FxRateEvent>)MODEL$.createDatumWriter(SCHEMA$);
+  private static final org.apache.avro.io.DatumWriter<AvroFxRateEvent>
+    WRITER$ = (org.apache.avro.io.DatumWriter<AvroFxRateEvent>)MODEL$.createDatumWriter(SCHEMA$);
 
   @Override public void writeExternal(java.io.ObjectOutput out)
     throws java.io.IOException {
@@ -261,8 +261,8 @@ public class FxRateEvent extends org.apache.avro.specific.SpecificRecordBase imp
   }
 
   @SuppressWarnings("unchecked")
-  private static final org.apache.avro.io.DatumReader<FxRateEvent>
-    READER$ = (org.apache.avro.io.DatumReader<FxRateEvent>)MODEL$.createDatumReader(SCHEMA$);
+  private static final org.apache.avro.io.DatumReader<AvroFxRateEvent>
+    READER$ = (org.apache.avro.io.DatumReader<AvroFxRateEvent>)MODEL$.createDatumReader(SCHEMA$);
 
   @Override public void readExternal(java.io.ObjectInput in)
     throws java.io.IOException {

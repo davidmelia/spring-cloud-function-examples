@@ -9,7 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
-import uk.co.dave.consumer.fxrate.domain.FxRate;
+import uk.co.dave.consumer.fxrate.consumer.json.JsonFxRateEvent;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {FxRateProducerApplication.class}, webEnvironment = WebEnvironment.NONE)
@@ -23,7 +23,7 @@ public class NonAvroFxRatePublisher {
   @Test
   public void invokeRnsNewsProducerForEver() throws InterruptedException {
     while (true) {
-      publisher.publish(new FxRate("GBP", "USD", BigDecimal.valueOf(123.45)));
+      publisher.publish(new JsonFxRateEvent("GBP", "USD", BigDecimal.valueOf(123.45)));
       Thread.sleep(1000);
     }
   }

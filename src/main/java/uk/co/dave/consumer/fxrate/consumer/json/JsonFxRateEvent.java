@@ -1,4 +1,4 @@
-package uk.co.dave.consumer.fxrate.domain;
+package uk.co.dave.consumer.fxrate.consumer.json;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class FxRate implements Serializable {
+public class JsonFxRateEvent implements Serializable {
 
   private static final long serialVersionUID = -3841396310860569815L;
 
