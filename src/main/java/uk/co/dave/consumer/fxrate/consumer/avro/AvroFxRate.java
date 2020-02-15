@@ -15,10 +15,13 @@ import org.apache.avro.message.SchemaStore;
 @org.apache.avro.specific.AvroGenerated
 public class AvroFxRate extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
   private static final long serialVersionUID = -2115957863964451711L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"AvroFxRate\",\"namespace\":\"uk.co.dave.consumer.fxrate.consumer.avro\",\"fields\":[{\"name\":\"from\",\"type\":\"string\"},{\"name\":\"to\",\"type\":\"string\"},{\"name\":\"rate\",\"type\":{\"type\":\"bytes\",\"logicalType\":\"decimal\",\"precision\":7,\"scale\":6}}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"AvroFxRate\",\"namespace\":\"uk.co.dave.consumer.fxrate.consumer.avro\",\"fields\":[{\"name\":\"from\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"to\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"rate\",\"type\":{\"type\":\"bytes\",\"logicalType\":\"decimal\",\"precision\":7,\"scale\":6}}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
+static {
+    MODEL$.addLogicalTypeConversion(new org.apache.avro.Conversions.DecimalConversion());
+  }
 
   private static final BinaryMessageEncoder<AvroFxRate> ENCODER =
       new BinaryMessageEncoder<AvroFxRate>(MODEL$, SCHEMA$);
@@ -71,9 +74,9 @@ public class AvroFxRate extends org.apache.avro.specific.SpecificRecordBase impl
     return DECODER.decode(b);
   }
 
-  @Deprecated public java.lang.CharSequence from;
-  @Deprecated public java.lang.CharSequence to;
-  @Deprecated public java.nio.ByteBuffer rate;
+  @Deprecated public java.lang.String from;
+  @Deprecated public java.lang.String to;
+  @Deprecated public java.math.BigDecimal rate;
 
   /**
    * Default constructor.  Note that this does not initialize fields
@@ -88,7 +91,7 @@ public class AvroFxRate extends org.apache.avro.specific.SpecificRecordBase impl
    * @param to The new value for to
    * @param rate The new value for rate
    */
-  public AvroFxRate(java.lang.CharSequence from, java.lang.CharSequence to, java.nio.ByteBuffer rate) {
+  public AvroFxRate(java.lang.String from, java.lang.String to, java.math.BigDecimal rate) {
     this.from = from;
     this.to = to;
     this.rate = rate;
@@ -110,7 +113,7 @@ public class AvroFxRate extends org.apache.avro.specific.SpecificRecordBase impl
       new org.apache.avro.Conversion<?>[] {
       null,
       null,
-      null,
+      new org.apache.avro.Conversions.DecimalConversion(),
       null
   };
 
@@ -123,9 +126,9 @@ public class AvroFxRate extends org.apache.avro.specific.SpecificRecordBase impl
   @SuppressWarnings(value="unchecked")
   public void put(int field$, java.lang.Object value$) {
     switch (field$) {
-    case 0: from = (java.lang.CharSequence)value$; break;
-    case 1: to = (java.lang.CharSequence)value$; break;
-    case 2: rate = (java.nio.ByteBuffer)value$; break;
+    case 0: from = value$ != null ? value$.toString() : null; break;
+    case 1: to = value$ != null ? value$.toString() : null; break;
+    case 2: rate = (java.math.BigDecimal)value$; break;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -134,7 +137,7 @@ public class AvroFxRate extends org.apache.avro.specific.SpecificRecordBase impl
    * Gets the value of the 'from' field.
    * @return The value of the 'from' field.
    */
-  public java.lang.CharSequence getFrom() {
+  public java.lang.String getFrom() {
     return from;
   }
 
@@ -143,7 +146,7 @@ public class AvroFxRate extends org.apache.avro.specific.SpecificRecordBase impl
    * Sets the value of the 'from' field.
    * @param value the value to set.
    */
-  public void setFrom(java.lang.CharSequence value) {
+  public void setFrom(java.lang.String value) {
     this.from = value;
   }
 
@@ -151,7 +154,7 @@ public class AvroFxRate extends org.apache.avro.specific.SpecificRecordBase impl
    * Gets the value of the 'to' field.
    * @return The value of the 'to' field.
    */
-  public java.lang.CharSequence getTo() {
+  public java.lang.String getTo() {
     return to;
   }
 
@@ -160,7 +163,7 @@ public class AvroFxRate extends org.apache.avro.specific.SpecificRecordBase impl
    * Sets the value of the 'to' field.
    * @param value the value to set.
    */
-  public void setTo(java.lang.CharSequence value) {
+  public void setTo(java.lang.String value) {
     this.to = value;
   }
 
@@ -168,7 +171,7 @@ public class AvroFxRate extends org.apache.avro.specific.SpecificRecordBase impl
    * Gets the value of the 'rate' field.
    * @return The value of the 'rate' field.
    */
-  public java.nio.ByteBuffer getRate() {
+  public java.math.BigDecimal getRate() {
     return rate;
   }
 
@@ -177,7 +180,7 @@ public class AvroFxRate extends org.apache.avro.specific.SpecificRecordBase impl
    * Sets the value of the 'rate' field.
    * @param value the value to set.
    */
-  public void setRate(java.nio.ByteBuffer value) {
+  public void setRate(java.math.BigDecimal value) {
     this.rate = value;
   }
 
@@ -222,9 +225,9 @@ public class AvroFxRate extends org.apache.avro.specific.SpecificRecordBase impl
   public static class Builder extends org.apache.avro.specific.SpecificRecordBuilderBase<AvroFxRate>
     implements org.apache.avro.data.RecordBuilder<AvroFxRate> {
 
-    private java.lang.CharSequence from;
-    private java.lang.CharSequence to;
-    private java.nio.ByteBuffer rate;
+    private java.lang.String from;
+    private java.lang.String to;
+    private java.math.BigDecimal rate;
 
     /** Creates a new Builder */
     private Builder() {
@@ -275,7 +278,7 @@ public class AvroFxRate extends org.apache.avro.specific.SpecificRecordBase impl
       * Gets the value of the 'from' field.
       * @return The value.
       */
-    public java.lang.CharSequence getFrom() {
+    public java.lang.String getFrom() {
       return from;
     }
 
@@ -285,7 +288,7 @@ public class AvroFxRate extends org.apache.avro.specific.SpecificRecordBase impl
       * @param value The value of 'from'.
       * @return This builder.
       */
-    public uk.co.dave.consumer.fxrate.consumer.avro.AvroFxRate.Builder setFrom(java.lang.CharSequence value) {
+    public uk.co.dave.consumer.fxrate.consumer.avro.AvroFxRate.Builder setFrom(java.lang.String value) {
       validate(fields()[0], value);
       this.from = value;
       fieldSetFlags()[0] = true;
@@ -315,7 +318,7 @@ public class AvroFxRate extends org.apache.avro.specific.SpecificRecordBase impl
       * Gets the value of the 'to' field.
       * @return The value.
       */
-    public java.lang.CharSequence getTo() {
+    public java.lang.String getTo() {
       return to;
     }
 
@@ -325,7 +328,7 @@ public class AvroFxRate extends org.apache.avro.specific.SpecificRecordBase impl
       * @param value The value of 'to'.
       * @return This builder.
       */
-    public uk.co.dave.consumer.fxrate.consumer.avro.AvroFxRate.Builder setTo(java.lang.CharSequence value) {
+    public uk.co.dave.consumer.fxrate.consumer.avro.AvroFxRate.Builder setTo(java.lang.String value) {
       validate(fields()[1], value);
       this.to = value;
       fieldSetFlags()[1] = true;
@@ -355,7 +358,7 @@ public class AvroFxRate extends org.apache.avro.specific.SpecificRecordBase impl
       * Gets the value of the 'rate' field.
       * @return The value.
       */
-    public java.nio.ByteBuffer getRate() {
+    public java.math.BigDecimal getRate() {
       return rate;
     }
 
@@ -365,7 +368,7 @@ public class AvroFxRate extends org.apache.avro.specific.SpecificRecordBase impl
       * @param value The value of 'rate'.
       * @return This builder.
       */
-    public uk.co.dave.consumer.fxrate.consumer.avro.AvroFxRate.Builder setRate(java.nio.ByteBuffer value) {
+    public uk.co.dave.consumer.fxrate.consumer.avro.AvroFxRate.Builder setRate(java.math.BigDecimal value) {
       validate(fields()[2], value);
       this.rate = value;
       fieldSetFlags()[2] = true;
@@ -396,9 +399,9 @@ public class AvroFxRate extends org.apache.avro.specific.SpecificRecordBase impl
     public AvroFxRate build() {
       try {
         AvroFxRate record = new AvroFxRate();
-        record.from = fieldSetFlags()[0] ? this.from : (java.lang.CharSequence) defaultValue(fields()[0]);
-        record.to = fieldSetFlags()[1] ? this.to : (java.lang.CharSequence) defaultValue(fields()[1]);
-        record.rate = fieldSetFlags()[2] ? this.rate : (java.nio.ByteBuffer) defaultValue(fields()[2]);
+        record.from = fieldSetFlags()[0] ? this.from : (java.lang.String) defaultValue(fields()[0]);
+        record.to = fieldSetFlags()[1] ? this.to : (java.lang.String) defaultValue(fields()[1]);
+        record.rate = fieldSetFlags()[2] ? this.rate : (java.math.BigDecimal) defaultValue(fields()[2]);
         return record;
       } catch (org.apache.avro.AvroMissingFieldException e) {
         throw e;

@@ -15,10 +15,13 @@ import org.apache.avro.message.SchemaStore;
 @org.apache.avro.specific.AvroGenerated
 public class AvroFxRateEvent extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
   private static final long serialVersionUID = 6388194945386055555L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"AvroFxRateEvent\",\"namespace\":\"uk.co.dave.consumer.fxrate.consumer.avro\",\"fields\":[{\"name\":\"fxRates\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"record\",\"name\":\"AvroFxRate\",\"fields\":[{\"name\":\"from\",\"type\":\"string\"},{\"name\":\"to\",\"type\":\"string\"},{\"name\":\"rate\",\"type\":{\"type\":\"bytes\",\"logicalType\":\"decimal\",\"precision\":7,\"scale\":6}}]}}}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"AvroFxRateEvent\",\"namespace\":\"uk.co.dave.consumer.fxrate.consumer.avro\",\"fields\":[{\"name\":\"fxRates\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"record\",\"name\":\"AvroFxRate\",\"fields\":[{\"name\":\"from\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"to\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"rate\",\"type\":{\"type\":\"bytes\",\"logicalType\":\"decimal\",\"precision\":7,\"scale\":6}}]}}}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
+static {
+    MODEL$.addLogicalTypeConversion(new org.apache.avro.Conversions.DecimalConversion());
+  }
 
   private static final BinaryMessageEncoder<AvroFxRateEvent> ENCODER =
       new BinaryMessageEncoder<AvroFxRateEvent>(MODEL$, SCHEMA$);
