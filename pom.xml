@@ -45,6 +45,29 @@
 		    <groupId>org.springframework.cloud</groupId>
 		    <artifactId>spring-cloud-function-adapter-aws</artifactId>
 		</dependency>	
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-schema-registry-client</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-web</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency> 
+
+        <dependency>
+            <groupId>io.confluent</groupId>
+            <artifactId>kafka-streams-avro-serde</artifactId>
+            <version>5.1.2</version>
+        </dependency>              
+        
+        		
+		<dependency>
+		  <groupId>org.apache.avro</groupId>
+		  <artifactId>avro</artifactId>
+		  <version>1.9.2</version>
+		</dependency>		
 		<dependency>
 			<groupId>com.amazonaws</groupId>
 			<artifactId>aws-lambda-java-core</artifactId>
@@ -62,12 +85,29 @@
         <finalName>${project.artifactId}</finalName>
         <plugins>
 			<plugin>
+			  <groupId>org.apache.avro</groupId>
+			  <artifactId>avro-maven-plugin</artifactId>
+			  <version>1.9.2</version>
+			  <executions>
+			    <execution>
+			      <phase>generate-sources</phase>
+			      <goals>
+			        <goal>schema</goal>
+			      </goals>
+			      <configuration>
+			        <sourceDirectory>${project.basedir}/src/main/resources/avro/</sourceDirectory>
+			        <outputDirectory>${project.basedir}/src/main/java/</outputDirectory>
+			      </configuration>
+			    </execution>
+			  </executions>
+			</plugin>          
+			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
 					<executable>true</executable>
 				</configuration>
-			</plugin>    
+			</plugin>      		  
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>

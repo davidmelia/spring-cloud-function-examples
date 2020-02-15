@@ -1,0 +1,29 @@
+{
+    "name": "FxRateEvent",
+    "type":"record",
+    "namespace": "uk.co.dave.fxrate.consumer.avro.fxrateevent",
+    "fields":[
+        {
+            "name":"fxRates",
+            "type":{
+                "type": "array",
+                "items":{
+                    "name":"FxRate",
+                    "type":"record",
+                    "namespace": "uk.co.dave.fxrate.consumer.avro.fxrateevent",
+                    "fields":[
+                        {"name":"from", "type":"string"},
+                        {"name":"to", "type":"string"},
+                        {"name":"rate", "type":{
+                                                  "type": "bytes",
+                                                  "logicalType": "decimal",
+                                                  "precision": 7,
+                                                  "scale": 6
+                                                }
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}
