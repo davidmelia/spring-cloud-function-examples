@@ -1,4 +1,4 @@
-package uk.co.dave.fxrate.consumer;
+package uk.co.dave.consumer.fxrate.consumer;
 
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -9,8 +9,8 @@ import org.springframework.kafka.support.KafkaHeaders;
 import org.springframework.messaging.MessageHeaders;
 import org.springframework.messaging.handler.annotation.Headers;
 import org.springframework.stereotype.Component;
-import uk.co.dave.fxrate.channels.FxRateBinding;
-import uk.co.dave.fxrate.domain.FxRate;
+import uk.co.dave.consumer.fxrate.channels.FxRateConsumerBinding;
+import uk.co.dave.consumer.fxrate.domain.FxRate;
 
 
 @Slf4j
@@ -18,7 +18,7 @@ import uk.co.dave.fxrate.domain.FxRate;
 @AllArgsConstructor
 public class FxRateConsumer {
 
-  @StreamListener(FxRateBinding.FX_RATES_IN)
+  @StreamListener(FxRateConsumerBinding.FX_RATES_IN)
   public void consume(final List<FxRate> events, @Headers MessageHeaders headers) {
     log.info("fxRateEvents = {}", events, headers);
     Acknowledgment ack = headers.get(KafkaHeaders.ACKNOWLEDGMENT, Acknowledgment.class);

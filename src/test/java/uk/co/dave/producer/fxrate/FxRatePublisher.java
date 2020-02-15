@@ -1,6 +1,6 @@
-package uk.co.dave.fxrate.publisher;
+package uk.co.dave.producer.fxrate;
 
-import static uk.co.dave.fxrate.channels.FxRateBinding.FX_RATE_OUT;
+import static uk.co.dave.producer.fxrate.FxRateProducerBinding.FX_RATE_OUT;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.stream.annotation.Output;
@@ -9,7 +9,7 @@ import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Component;
-import uk.co.dave.fxrate.domain.FxRate;
+import uk.co.dave.consumer.fxrate.domain.FxRate;
 
 @Component
 @Slf4j

@@ -3,7 +3,7 @@
  *
  * DO NOT EDIT DIRECTLY
  */
-package uk.co.dave.fxrate.consumer.avro.fxrateevent;
+package uk.co.dave.shared.fxrateevent;
 
 import org.apache.avro.generic.GenericArray;
 import org.apache.avro.specific.SpecificData;
@@ -14,8 +14,8 @@ import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
 public class FxRate extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = -4938841212725322838L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"FxRate\",\"namespace\":\"uk.co.dave.fxrate.consumer.avro.fxrateevent\",\"fields\":[{\"name\":\"from\",\"type\":\"string\"},{\"name\":\"to\",\"type\":\"string\"},{\"name\":\"rate\",\"type\":{\"type\":\"bytes\",\"logicalType\":\"decimal\",\"precision\":7,\"scale\":6}}]}");
+  private static final long serialVersionUID = -2273904616364115651L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"FxRate\",\"namespace\":\"uk.co.dave.shared.fxrateevent\",\"fields\":[{\"name\":\"from\",\"type\":\"string\"},{\"name\":\"to\",\"type\":\"string\"},{\"name\":\"rate\",\"type\":{\"type\":\"bytes\",\"logicalType\":\"decimal\",\"precision\":7,\"scale\":6}}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
@@ -185,8 +185,8 @@ public class FxRate extends org.apache.avro.specific.SpecificRecordBase implemen
    * Creates a new FxRate RecordBuilder.
    * @return A new FxRate RecordBuilder
    */
-  public static uk.co.dave.fxrate.consumer.avro.fxrateevent.FxRate.Builder newBuilder() {
-    return new uk.co.dave.fxrate.consumer.avro.fxrateevent.FxRate.Builder();
+  public static uk.co.dave.shared.fxrateevent.FxRate.Builder newBuilder() {
+    return new uk.co.dave.shared.fxrateevent.FxRate.Builder();
   }
 
   /**
@@ -194,11 +194,11 @@ public class FxRate extends org.apache.avro.specific.SpecificRecordBase implemen
    * @param other The existing builder to copy.
    * @return A new FxRate RecordBuilder
    */
-  public static uk.co.dave.fxrate.consumer.avro.fxrateevent.FxRate.Builder newBuilder(uk.co.dave.fxrate.consumer.avro.fxrateevent.FxRate.Builder other) {
+  public static uk.co.dave.shared.fxrateevent.FxRate.Builder newBuilder(uk.co.dave.shared.fxrateevent.FxRate.Builder other) {
     if (other == null) {
-      return new uk.co.dave.fxrate.consumer.avro.fxrateevent.FxRate.Builder();
+      return new uk.co.dave.shared.fxrateevent.FxRate.Builder();
     } else {
-      return new uk.co.dave.fxrate.consumer.avro.fxrateevent.FxRate.Builder(other);
+      return new uk.co.dave.shared.fxrateevent.FxRate.Builder(other);
     }
   }
 
@@ -207,11 +207,11 @@ public class FxRate extends org.apache.avro.specific.SpecificRecordBase implemen
    * @param other The existing instance to copy.
    * @return A new FxRate RecordBuilder
    */
-  public static uk.co.dave.fxrate.consumer.avro.fxrateevent.FxRate.Builder newBuilder(uk.co.dave.fxrate.consumer.avro.fxrateevent.FxRate other) {
+  public static uk.co.dave.shared.fxrateevent.FxRate.Builder newBuilder(uk.co.dave.shared.fxrateevent.FxRate other) {
     if (other == null) {
-      return new uk.co.dave.fxrate.consumer.avro.fxrateevent.FxRate.Builder();
+      return new uk.co.dave.shared.fxrateevent.FxRate.Builder();
     } else {
-      return new uk.co.dave.fxrate.consumer.avro.fxrateevent.FxRate.Builder(other);
+      return new uk.co.dave.shared.fxrateevent.FxRate.Builder(other);
     }
   }
 
@@ -235,7 +235,7 @@ public class FxRate extends org.apache.avro.specific.SpecificRecordBase implemen
      * Creates a Builder by copying an existing Builder.
      * @param other The existing Builder to copy.
      */
-    private Builder(uk.co.dave.fxrate.consumer.avro.fxrateevent.FxRate.Builder other) {
+    private Builder(uk.co.dave.shared.fxrateevent.FxRate.Builder other) {
       super(other);
       if (isValidValue(fields()[0], other.from)) {
         this.from = data().deepCopy(fields()[0].schema(), other.from);
@@ -255,7 +255,7 @@ public class FxRate extends org.apache.avro.specific.SpecificRecordBase implemen
      * Creates a Builder by copying an existing FxRate instance
      * @param other The existing instance to copy.
      */
-    private Builder(uk.co.dave.fxrate.consumer.avro.fxrateevent.FxRate other) {
+    private Builder(uk.co.dave.shared.fxrateevent.FxRate other) {
       super(SCHEMA$);
       if (isValidValue(fields()[0], other.from)) {
         this.from = data().deepCopy(fields()[0].schema(), other.from);
@@ -285,7 +285,7 @@ public class FxRate extends org.apache.avro.specific.SpecificRecordBase implemen
       * @param value The value of 'from'.
       * @return This builder.
       */
-    public uk.co.dave.fxrate.consumer.avro.fxrateevent.FxRate.Builder setFrom(java.lang.CharSequence value) {
+    public uk.co.dave.shared.fxrateevent.FxRate.Builder setFrom(java.lang.CharSequence value) {
       validate(fields()[0], value);
       this.from = value;
       fieldSetFlags()[0] = true;
@@ -305,7 +305,7 @@ public class FxRate extends org.apache.avro.specific.SpecificRecordBase implemen
       * Clears the value of the 'from' field.
       * @return This builder.
       */
-    public uk.co.dave.fxrate.consumer.avro.fxrateevent.FxRate.Builder clearFrom() {
+    public uk.co.dave.shared.fxrateevent.FxRate.Builder clearFrom() {
       from = null;
       fieldSetFlags()[0] = false;
       return this;
@@ -325,7 +325,7 @@ public class FxRate extends org.apache.avro.specific.SpecificRecordBase implemen
       * @param value The value of 'to'.
       * @return This builder.
       */
-    public uk.co.dave.fxrate.consumer.avro.fxrateevent.FxRate.Builder setTo(java.lang.CharSequence value) {
+    public uk.co.dave.shared.fxrateevent.FxRate.Builder setTo(java.lang.CharSequence value) {
       validate(fields()[1], value);
       this.to = value;
       fieldSetFlags()[1] = true;
@@ -345,7 +345,7 @@ public class FxRate extends org.apache.avro.specific.SpecificRecordBase implemen
       * Clears the value of the 'to' field.
       * @return This builder.
       */
-    public uk.co.dave.fxrate.consumer.avro.fxrateevent.FxRate.Builder clearTo() {
+    public uk.co.dave.shared.fxrateevent.FxRate.Builder clearTo() {
       to = null;
       fieldSetFlags()[1] = false;
       return this;
@@ -365,7 +365,7 @@ public class FxRate extends org.apache.avro.specific.SpecificRecordBase implemen
       * @param value The value of 'rate'.
       * @return This builder.
       */
-    public uk.co.dave.fxrate.consumer.avro.fxrateevent.FxRate.Builder setRate(java.nio.ByteBuffer value) {
+    public uk.co.dave.shared.fxrateevent.FxRate.Builder setRate(java.nio.ByteBuffer value) {
       validate(fields()[2], value);
       this.rate = value;
       fieldSetFlags()[2] = true;
@@ -385,7 +385,7 @@ public class FxRate extends org.apache.avro.specific.SpecificRecordBase implemen
       * Clears the value of the 'rate' field.
       * @return This builder.
       */
-    public uk.co.dave.fxrate.consumer.avro.fxrateevent.FxRate.Builder clearRate() {
+    public uk.co.dave.shared.fxrateevent.FxRate.Builder clearRate() {
       rate = null;
       fieldSetFlags()[2] = false;
       return this;

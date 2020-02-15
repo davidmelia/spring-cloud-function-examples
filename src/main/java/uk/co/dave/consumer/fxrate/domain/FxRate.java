@@ -1,4 +1,4 @@
-package uk.co.dave.fxrate.domain;
+package uk.co.dave.consumer.fxrate.domain;
 
 import java.io.Serializable;
 import java.math.BigDecimal;

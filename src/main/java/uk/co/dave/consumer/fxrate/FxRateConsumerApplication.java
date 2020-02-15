@@ -1,4 +1,4 @@
-package uk.co.dave.fxrate;
+package uk.co.dave.consumer.fxrate;
 
 import com.amazonaws.services.lambda.runtime.events.ScheduledEvent;
 import java.time.Duration;
@@ -11,8 +11,7 @@ import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.context.annotation.Bean;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-import uk.co.dave.fxrate.channels.FxRateBinding;
-import uk.co.dave.fxrate.service.FxRateService;
+import uk.co.dave.consumer.fxrate.channels.FxRateConsumerBinding;
 
 
 /**
@@ -22,15 +21,15 @@ import uk.co.dave.fxrate.service.FxRateService;
  */
 @SpringBootApplication
 @EnableSchemaRegistryClient
-@EnableBinding(FxRateBinding.class)
+@EnableBinding(FxRateConsumerBinding.class)
 @Slf4j
-public class FxRateProducerApplication {
+public class FxRateConsumerApplication {
   public static void main(String[] args) {
-    SpringApplication.run(FxRateProducerApplication.class, args);
+    SpringApplication.run(FxRateConsumerApplication.class, args);
   }
 
   @Bean
-  public Function<Flux<ScheduledEvent>, Flux<String>> function(FxRateService fxRateService) {
+  public Function<Flux<ScheduledEvent>, Flux<String>> function() {
     return flux -> flux.doOnNext(t -> {
       log.info("****SPRING CLOUD FUNCTION 3 ****");
     }).delaySequence(Duration.ofSeconds(5)).doOnNext(t -> log.info("Waiting Over.")).flatMap(x -> Mono.just("OK"));
