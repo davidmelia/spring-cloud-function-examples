@@ -30,7 +30,7 @@ public class JsonFxRatePublisher {
 
 
   @Test
-  public void invokeRnsNewsProducerForEver() throws InterruptedException {
+  public void sendJsonFxRateEventForever() throws InterruptedException {
     while (true) {
       JsonFxRateEvent event = new JsonFxRateEvent("GBP", "USD", BigDecimal.valueOf(123.45));
       final Message<JsonFxRateEvent> message = MessageBuilder.withPayload(event).setHeaderIfAbsent(KafkaHeaders.MESSAGE_KEY, JsonFxRateEvent.class.getSimpleName()).build();

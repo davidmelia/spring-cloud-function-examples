@@ -21,14 +21,14 @@ public class FxRateConsumer {
 
   @StreamListener(FxRateConsumerBinding.FX_RATES_IN)
   public void consume(final List<JsonFxRateEvent> events, @Headers MessageHeaders headers) {
-    log.info("fxRateEvents = {}", events, headers);
+    log.info("jsonFxRateEvents = size={}", events.size());
     Acknowledgment ack = headers.get(KafkaHeaders.ACKNOWLEDGMENT, Acknowledgment.class);
     ack.acknowledge();
   }
 
   @StreamListener(FxRateConsumerBinding.AVRO_FX_RATES_IN)
   public void consumeAvro(final List<AvroFxRateEvent> events, @Headers MessageHeaders headers) {
-    log.info("avroFxRateEvents = {}", events, headers);
+    log.info("avroFxRateEvents = size={}", events.size());
     Acknowledgment ack = headers.get(KafkaHeaders.ACKNOWLEDGMENT, Acknowledgment.class);
     ack.acknowledge();
   }

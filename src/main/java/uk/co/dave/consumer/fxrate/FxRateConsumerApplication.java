@@ -32,7 +32,7 @@ public class FxRateConsumerApplication {
   public Function<Flux<ScheduledEvent>, Flux<String>> function() {
     return flux -> flux.doOnNext(t -> {
       log.info("****SPRING CLOUD FUNCTION 3 ****");
-    }).delaySequence(Duration.ofSeconds(5)).doOnNext(t -> log.info("Waiting Over.")).flatMap(x -> Mono.just("OK"));
+    }).delaySequence(Duration.ofMinutes(5)).doOnNext(t -> log.info("Waiting Over.")).flatMap(x -> Mono.just("OK"));
   }
 
 }
