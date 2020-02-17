@@ -1,0 +1,1 @@
+kafka-topics --zookeeper localhost:32181 --describe

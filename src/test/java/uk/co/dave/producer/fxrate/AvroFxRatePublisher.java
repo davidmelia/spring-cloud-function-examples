@@ -5,6 +5,7 @@ import static uk.co.dave.producer.fxrate.FxRateProducerBinding.AVRO_FX_RATE_OUT;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.List;
+import java.util.UUID;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -36,7 +37,7 @@ public class AvroFxRatePublisher {
   public void sendAvroFxRateEventForever() throws InterruptedException {
     while (true) {
       AvroFxRateEvent event = new AvroFxRateEvent(List.of(AvroFxRate.newBuilder().setFrom("USD").setTo("GBP").setRate(new BigDecimal(0.770045).setScale(6, RoundingMode.HALF_UP)).build()));
-      final Message<AvroFxRateEvent> message = MessageBuilder.withPayload(event).setHeaderIfAbsent(KafkaHeaders.MESSAGE_KEY, AvroFxRate.class.getSimpleName()).build();
+      final Message<AvroFxRateEvent> message = MessageBuilder.withPayload(event).setHeaderIfAbsent(KafkaHeaders.MESSAGE_KEY, UUID.randomUUID().toString()).build();
       this.avroFxRateOut.send(message);
       log.info("Message sent to binding");
       Thread.sleep(1000);
@@ -45,9 +46,9 @@ public class AvroFxRatePublisher {
 
   @Test
   public void sendLotsOfAvroFxRateEvents() throws InterruptedException {
-    for (int i = 0; i < 100000; i++) {
+    for (int i = 0; i < 30; i++) {
       AvroFxRateEvent event = new AvroFxRateEvent(List.of(AvroFxRate.newBuilder().setFrom("USD").setTo("GBP").setRate(new BigDecimal(0.770045).setScale(6, RoundingMode.HALF_UP)).build()));
-      final Message<AvroFxRateEvent> message = MessageBuilder.withPayload(event).setHeaderIfAbsent(KafkaHeaders.MESSAGE_KEY, AvroFxRate.class.getSimpleName()).build();
+      final Message<AvroFxRateEvent> message = MessageBuilder.withPayload(event).setHeaderIfAbsent(KafkaHeaders.MESSAGE_KEY, UUID.randomUUID().toString()).build();
       this.avroFxRateOut.send(message);
     }
   }

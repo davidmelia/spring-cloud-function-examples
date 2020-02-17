@@ -40,4 +40,13 @@ public class JsonFxRatePublisher {
     }
   }
 
+  @Test
+  public void sendLotsOfJsonFxRateEvents() throws InterruptedException {
+    for (int i = 0; i < 30; i++) {
+      JsonFxRateEvent event = new JsonFxRateEvent("GBP", "USD", BigDecimal.valueOf(123.45));
+      final Message<JsonFxRateEvent> message = MessageBuilder.withPayload(event).setHeaderIfAbsent(KafkaHeaders.MESSAGE_KEY, JsonFxRateEvent.class.getSimpleName()).build();
+      this.fxRate2Out.send(message);
+    }
+  }
+
 }
