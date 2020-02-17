@@ -23,14 +23,24 @@ public class FxRateConsumer {
   public void consume(final List<JsonFxRateEvent> events, @Headers MessageHeaders headers) {
     log.info("jsonFxRateEvents = size={}", events.size());
     Acknowledgment ack = headers.get(KafkaHeaders.ACKNOWLEDGMENT, Acknowledgment.class);
-    ack.acknowledge();
+    try {
+      ack.acknowledge();
+    } catch (Exception e) {
+      log.error("Acknowledgement error rolling back.", e);
+      throw e;
+    }
   }
 
   @StreamListener(FxRateConsumerBinding.AVRO_FX_RATES_IN)
   public void consumeAvro(final List<AvroFxRateEvent> events, @Headers MessageHeaders headers) {
     log.info("avroFxRateEvents = size={}", events.size());
     Acknowledgment ack = headers.get(KafkaHeaders.ACKNOWLEDGMENT, Acknowledgment.class);
-    ack.acknowledge();
+    try {
+      ack.acknowledge();
+    } catch (Exception e) {
+      log.error("Acknowledgement error rolling back.", e);
+      throw e;
+    }
   }
 
 }
