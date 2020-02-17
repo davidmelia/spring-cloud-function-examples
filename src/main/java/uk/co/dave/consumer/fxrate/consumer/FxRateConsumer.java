@@ -33,7 +33,7 @@ public class FxRateConsumer {
 
   @StreamListener(FxRateConsumerBinding.AVRO_FX_RATES_IN)
   public void consumeAvro(final List<AvroFxRateEvent> events, @Headers MessageHeaders headers) {
-    log.info("avroFxRateEvents = size={}, headers={}", events.size(), headers);
+    log.info("avroFxRateEvents = size={}, headers=", events.size(), headers);
     Acknowledgment ack = headers.get(KafkaHeaders.ACKNOWLEDGMENT, Acknowledgment.class);
     try {
       ack.acknowledge();

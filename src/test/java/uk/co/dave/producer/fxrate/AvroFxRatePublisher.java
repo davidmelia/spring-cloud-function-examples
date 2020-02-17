@@ -46,7 +46,7 @@ public class AvroFxRatePublisher {
 
   @Test
   public void sendLotsOfAvroFxRateEvents() throws InterruptedException {
-    for (int i = 0; i < 30; i++) {
+    for (int i = 0; i < 100000; i++) {
       AvroFxRateEvent event = new AvroFxRateEvent(List.of(AvroFxRate.newBuilder().setFrom("USD").setTo("GBP").setRate(new BigDecimal(0.770045).setScale(6, RoundingMode.HALF_UP)).build()));
       final Message<AvroFxRateEvent> message = MessageBuilder.withPayload(event).setHeaderIfAbsent(KafkaHeaders.MESSAGE_KEY, UUID.randomUUID().toString()).build();
       this.avroFxRateOut.send(message);
