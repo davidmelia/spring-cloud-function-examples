@@ -19,7 +19,7 @@ import uk.co.dave.consumer.fxrate.consumer.json.JsonFxRateEvent;
 @AllArgsConstructor
 public class FxRateConsumer {
 
-  @StreamListener(FxRateConsumerBinding.FX_RATES_IN)
+ @StreamListener(FxRateConsumerBinding.FX_RATES_IN)
   public void consume(final List<JsonFxRateEvent> events, @Headers MessageHeaders headers) {
     log.info("jsonFxRateEvents = size={}", events.size());
     Acknowledgment ack = headers.get(KafkaHeaders.ACKNOWLEDGMENT, Acknowledgment.class);

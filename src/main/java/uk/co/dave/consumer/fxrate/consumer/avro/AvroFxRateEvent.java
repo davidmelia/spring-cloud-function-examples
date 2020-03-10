@@ -14,8 +14,8 @@ import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
 public class AvroFxRateEvent extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = 6388194945386055555L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"AvroFxRateEvent\",\"namespace\":\"uk.co.dave.consumer.fxrate.consumer.avro\",\"fields\":[{\"name\":\"fxRates\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"record\",\"name\":\"AvroFxRate\",\"fields\":[{\"name\":\"from\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"to\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"rate\",\"type\":{\"type\":\"bytes\",\"logicalType\":\"decimal\",\"precision\":7,\"scale\":6}}]}}}]}");
+  private static final long serialVersionUID = -6541967269400076578L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"AvroFxRateEvent\",\"namespace\":\"uk.co.dave.consumer.fxrate.consumer.avro\",\"fields\":[{\"name\":\"from\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"to\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"rate\",\"type\":{\"type\":\"bytes\",\"logicalType\":\"decimal\",\"precision\":7,\"scale\":6}}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
@@ -74,7 +74,9 @@ static {
     return DECODER.decode(b);
   }
 
-  @Deprecated public java.util.List<uk.co.dave.consumer.fxrate.consumer.avro.AvroFxRate> fxRates;
+  @Deprecated public java.lang.String from;
+  @Deprecated public java.lang.String to;
+  @Deprecated public java.math.BigDecimal rate;
 
   /**
    * Default constructor.  Note that this does not initialize fields
@@ -85,10 +87,14 @@ static {
 
   /**
    * All-args constructor.
-   * @param fxRates The new value for fxRates
+   * @param from The new value for from
+   * @param to The new value for to
+   * @param rate The new value for rate
    */
-  public AvroFxRateEvent(java.util.List<uk.co.dave.consumer.fxrate.consumer.avro.AvroFxRate> fxRates) {
-    this.fxRates = fxRates;
+  public AvroFxRateEvent(java.lang.String from, java.lang.String to, java.math.BigDecimal rate) {
+    this.from = from;
+    this.to = to;
+    this.rate = rate;
   }
 
   public org.apache.avro.specific.SpecificData getSpecificData() { return MODEL$; }
@@ -96,35 +102,86 @@ static {
   // Used by DatumWriter.  Applications should not call.
   public java.lang.Object get(int field$) {
     switch (field$) {
-    case 0: return fxRates;
+    case 0: return from;
+    case 1: return to;
+    case 2: return rate;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
+  }
+
+  private static final org.apache.avro.Conversion<?>[] conversions =
+      new org.apache.avro.Conversion<?>[] {
+      null,
+      null,
+      new org.apache.avro.Conversions.DecimalConversion(),
+      null
+  };
+
+  @Override
+  public org.apache.avro.Conversion<?> getConversion(int field) {
+    return conversions[field];
   }
 
   // Used by DatumReader.  Applications should not call.
   @SuppressWarnings(value="unchecked")
   public void put(int field$, java.lang.Object value$) {
     switch (field$) {
-    case 0: fxRates = (java.util.List<uk.co.dave.consumer.fxrate.consumer.avro.AvroFxRate>)value$; break;
+    case 0: from = value$ != null ? value$.toString() : null; break;
+    case 1: to = value$ != null ? value$.toString() : null; break;
+    case 2: rate = (java.math.BigDecimal)value$; break;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
 
   /**
-   * Gets the value of the 'fxRates' field.
-   * @return The value of the 'fxRates' field.
+   * Gets the value of the 'from' field.
+   * @return The value of the 'from' field.
    */
-  public java.util.List<uk.co.dave.consumer.fxrate.consumer.avro.AvroFxRate> getFxRates() {
-    return fxRates;
+  public java.lang.String getFrom() {
+    return from;
   }
 
 
   /**
-   * Sets the value of the 'fxRates' field.
+   * Sets the value of the 'from' field.
    * @param value the value to set.
    */
-  public void setFxRates(java.util.List<uk.co.dave.consumer.fxrate.consumer.avro.AvroFxRate> value) {
-    this.fxRates = value;
+  public void setFrom(java.lang.String value) {
+    this.from = value;
+  }
+
+  /**
+   * Gets the value of the 'to' field.
+   * @return The value of the 'to' field.
+   */
+  public java.lang.String getTo() {
+    return to;
+  }
+
+
+  /**
+   * Sets the value of the 'to' field.
+   * @param value the value to set.
+   */
+  public void setTo(java.lang.String value) {
+    this.to = value;
+  }
+
+  /**
+   * Gets the value of the 'rate' field.
+   * @return The value of the 'rate' field.
+   */
+  public java.math.BigDecimal getRate() {
+    return rate;
+  }
+
+
+  /**
+   * Sets the value of the 'rate' field.
+   * @param value the value to set.
+   */
+  public void setRate(java.math.BigDecimal value) {
+    this.rate = value;
   }
 
   /**
@@ -168,7 +225,9 @@ static {
   public static class Builder extends org.apache.avro.specific.SpecificRecordBuilderBase<AvroFxRateEvent>
     implements org.apache.avro.data.RecordBuilder<AvroFxRateEvent> {
 
-    private java.util.List<uk.co.dave.consumer.fxrate.consumer.avro.AvroFxRate> fxRates;
+    private java.lang.String from;
+    private java.lang.String to;
+    private java.math.BigDecimal rate;
 
     /** Creates a new Builder */
     private Builder() {
@@ -181,9 +240,17 @@ static {
      */
     private Builder(uk.co.dave.consumer.fxrate.consumer.avro.AvroFxRateEvent.Builder other) {
       super(other);
-      if (isValidValue(fields()[0], other.fxRates)) {
-        this.fxRates = data().deepCopy(fields()[0].schema(), other.fxRates);
+      if (isValidValue(fields()[0], other.from)) {
+        this.from = data().deepCopy(fields()[0].schema(), other.from);
         fieldSetFlags()[0] = other.fieldSetFlags()[0];
+      }
+      if (isValidValue(fields()[1], other.to)) {
+        this.to = data().deepCopy(fields()[1].schema(), other.to);
+        fieldSetFlags()[1] = other.fieldSetFlags()[1];
+      }
+      if (isValidValue(fields()[2], other.rate)) {
+        this.rate = data().deepCopy(fields()[2].schema(), other.rate);
+        fieldSetFlags()[2] = other.fieldSetFlags()[2];
       }
     }
 
@@ -193,49 +260,137 @@ static {
      */
     private Builder(uk.co.dave.consumer.fxrate.consumer.avro.AvroFxRateEvent other) {
       super(SCHEMA$);
-      if (isValidValue(fields()[0], other.fxRates)) {
-        this.fxRates = data().deepCopy(fields()[0].schema(), other.fxRates);
+      if (isValidValue(fields()[0], other.from)) {
+        this.from = data().deepCopy(fields()[0].schema(), other.from);
         fieldSetFlags()[0] = true;
+      }
+      if (isValidValue(fields()[1], other.to)) {
+        this.to = data().deepCopy(fields()[1].schema(), other.to);
+        fieldSetFlags()[1] = true;
+      }
+      if (isValidValue(fields()[2], other.rate)) {
+        this.rate = data().deepCopy(fields()[2].schema(), other.rate);
+        fieldSetFlags()[2] = true;
       }
     }
 
     /**
-      * Gets the value of the 'fxRates' field.
+      * Gets the value of the 'from' field.
       * @return The value.
       */
-    public java.util.List<uk.co.dave.consumer.fxrate.consumer.avro.AvroFxRate> getFxRates() {
-      return fxRates;
+    public java.lang.String getFrom() {
+      return from;
     }
 
 
     /**
-      * Sets the value of the 'fxRates' field.
-      * @param value The value of 'fxRates'.
+      * Sets the value of the 'from' field.
+      * @param value The value of 'from'.
       * @return This builder.
       */
-    public uk.co.dave.consumer.fxrate.consumer.avro.AvroFxRateEvent.Builder setFxRates(java.util.List<uk.co.dave.consumer.fxrate.consumer.avro.AvroFxRate> value) {
+    public uk.co.dave.consumer.fxrate.consumer.avro.AvroFxRateEvent.Builder setFrom(java.lang.String value) {
       validate(fields()[0], value);
-      this.fxRates = value;
+      this.from = value;
       fieldSetFlags()[0] = true;
       return this;
     }
 
     /**
-      * Checks whether the 'fxRates' field has been set.
-      * @return True if the 'fxRates' field has been set, false otherwise.
+      * Checks whether the 'from' field has been set.
+      * @return True if the 'from' field has been set, false otherwise.
       */
-    public boolean hasFxRates() {
+    public boolean hasFrom() {
       return fieldSetFlags()[0];
     }
 
 
     /**
-      * Clears the value of the 'fxRates' field.
+      * Clears the value of the 'from' field.
       * @return This builder.
       */
-    public uk.co.dave.consumer.fxrate.consumer.avro.AvroFxRateEvent.Builder clearFxRates() {
-      fxRates = null;
+    public uk.co.dave.consumer.fxrate.consumer.avro.AvroFxRateEvent.Builder clearFrom() {
+      from = null;
       fieldSetFlags()[0] = false;
+      return this;
+    }
+
+    /**
+      * Gets the value of the 'to' field.
+      * @return The value.
+      */
+    public java.lang.String getTo() {
+      return to;
+    }
+
+
+    /**
+      * Sets the value of the 'to' field.
+      * @param value The value of 'to'.
+      * @return This builder.
+      */
+    public uk.co.dave.consumer.fxrate.consumer.avro.AvroFxRateEvent.Builder setTo(java.lang.String value) {
+      validate(fields()[1], value);
+      this.to = value;
+      fieldSetFlags()[1] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'to' field has been set.
+      * @return True if the 'to' field has been set, false otherwise.
+      */
+    public boolean hasTo() {
+      return fieldSetFlags()[1];
+    }
+
+
+    /**
+      * Clears the value of the 'to' field.
+      * @return This builder.
+      */
+    public uk.co.dave.consumer.fxrate.consumer.avro.AvroFxRateEvent.Builder clearTo() {
+      to = null;
+      fieldSetFlags()[1] = false;
+      return this;
+    }
+
+    /**
+      * Gets the value of the 'rate' field.
+      * @return The value.
+      */
+    public java.math.BigDecimal getRate() {
+      return rate;
+    }
+
+
+    /**
+      * Sets the value of the 'rate' field.
+      * @param value The value of 'rate'.
+      * @return This builder.
+      */
+    public uk.co.dave.consumer.fxrate.consumer.avro.AvroFxRateEvent.Builder setRate(java.math.BigDecimal value) {
+      validate(fields()[2], value);
+      this.rate = value;
+      fieldSetFlags()[2] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'rate' field has been set.
+      * @return True if the 'rate' field has been set, false otherwise.
+      */
+    public boolean hasRate() {
+      return fieldSetFlags()[2];
+    }
+
+
+    /**
+      * Clears the value of the 'rate' field.
+      * @return This builder.
+      */
+    public uk.co.dave.consumer.fxrate.consumer.avro.AvroFxRateEvent.Builder clearRate() {
+      rate = null;
+      fieldSetFlags()[2] = false;
       return this;
     }
 
@@ -244,7 +399,9 @@ static {
     public AvroFxRateEvent build() {
       try {
         AvroFxRateEvent record = new AvroFxRateEvent();
-        record.fxRates = fieldSetFlags()[0] ? this.fxRates : (java.util.List<uk.co.dave.consumer.fxrate.consumer.avro.AvroFxRate>) defaultValue(fields()[0]);
+        record.from = fieldSetFlags()[0] ? this.from : (java.lang.String) defaultValue(fields()[0]);
+        record.to = fieldSetFlags()[1] ? this.to : (java.lang.String) defaultValue(fields()[1]);
+        record.rate = fieldSetFlags()[2] ? this.rate : (java.math.BigDecimal) defaultValue(fields()[2]);
         return record;
       } catch (org.apache.avro.AvroMissingFieldException e) {
         throw e;
