@@ -31,7 +31,12 @@ public class FxRateConsumer {
     }
   }
 
-  @StreamListener(FxRateConsumerBinding.AVRO_FX_RATES_IN)
+  /**
+   * This does NOT work for the FxRateConsumerTest - is batch mode supported via spring cloud contract
+   * @param events
+   * @param headers
+   */
+  //@StreamListener(FxRateConsumerBinding.AVRO_FX_RATES_IN)
   public void consumeAvro(final List<AvroFxRateEvent> events, @Headers MessageHeaders headers) {
     log.info("avroFxRateEvents = size={}, headers=", events.size(), headers);
     Acknowledgment ack = headers.get(KafkaHeaders.ACKNOWLEDGMENT, Acknowledgment.class);
@@ -41,6 +46,17 @@ public class FxRateConsumer {
       log.error("Acknowledgement error rolling back.", e);
       throw e;
     }
+  }
+  
+  /**
+   * This works OK for the FxRateConsumerTest
+   * @param events
+   * @param headers
+   */
+  @StreamListener(FxRateConsumerBinding.AVRO_FX_RATES_IN)
+  public void consumeAvro(AvroFxRateEvent events, @Headers MessageHeaders headers) {
+    log.info("avroFxRateEvents = event={}", events, headers);
+  
   }
 
 }
