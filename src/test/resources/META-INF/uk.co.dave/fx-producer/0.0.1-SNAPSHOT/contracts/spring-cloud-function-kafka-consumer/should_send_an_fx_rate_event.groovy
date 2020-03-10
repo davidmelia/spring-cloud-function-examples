@@ -9,10 +9,18 @@ Contract.make {
     }
     outputMessage {
         sentTo('avro-fx-rate-events')
-        body([
-                from: "GBP",
-                to: "USD",
-                rate: "1.23"
-        ])
+        body(
+           [
+                [
+                    
+	                from: 'GBP',
+	                to: 'USD',
+	                rate: '1.23'
+                    
+                ]
+            ]
+        	
+        )
     }
 }
+

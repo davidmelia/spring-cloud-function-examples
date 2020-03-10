@@ -36,7 +36,7 @@ public class FxRateConsumer {
    * @param events
    * @param headers
    */
-  //@StreamListener(FxRateConsumerBinding.AVRO_FX_RATES_IN)
+  @StreamListener(FxRateConsumerBinding.AVRO_FX_RATES_IN)
   public void consumeAvro(final List<AvroFxRateEvent> events, @Headers MessageHeaders headers) {
     log.info("avroFxRateEvents = size={}, headers=", events.size(), headers);
     Acknowledgment ack = headers.get(KafkaHeaders.ACKNOWLEDGMENT, Acknowledgment.class);
@@ -53,7 +53,7 @@ public class FxRateConsumer {
    * @param events
    * @param headers
    */
-  @StreamListener(FxRateConsumerBinding.AVRO_FX_RATES_IN)
+  //@StreamListener(FxRateConsumerBinding.AVRO_FX_RATES_IN)
   public void consumeAvro(AvroFxRateEvent events, @Headers MessageHeaders headers) {
     log.info("avroFxRateEvents = event={}", events, headers);
   
