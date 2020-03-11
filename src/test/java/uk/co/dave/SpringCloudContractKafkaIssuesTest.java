@@ -3,7 +3,6 @@ package uk.co.dave;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.fasterxml.jackson.databind.exc.MismatchedInputException;
-import com.github.jknack.handlebars.internal.lang3.ObjectUtils.Null;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

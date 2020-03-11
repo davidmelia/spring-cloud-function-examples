@@ -1,6 +1,7 @@
 package uk.co.dave.producer.fxrate;
 
-import static uk.co.dave.producer.fxrate.FxRateProducerBinding.*;
+import static uk.co.dave.producer.fxrate.FxRateProducerBinding.AVRO_FX_RATE_BATCH_OUT;
+import static uk.co.dave.producer.fxrate.FxRateProducerBinding.AVRO_FX_RATE_OUT;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

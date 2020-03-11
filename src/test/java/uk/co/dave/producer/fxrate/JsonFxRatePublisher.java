@@ -1,6 +1,7 @@
 package uk.co.dave.producer.fxrate;
 
-import static uk.co.dave.producer.fxrate.FxRateProducerBinding.*;
+import static uk.co.dave.producer.fxrate.FxRateProducerBinding.JSON_FX_RATE_BATCH_OUT;
+import static uk.co.dave.producer.fxrate.FxRateProducerBinding.JSON_FX_RATE_OUT;
 
 import java.math.BigDecimal;
 import lombok.extern.slf4j.Slf4j;
