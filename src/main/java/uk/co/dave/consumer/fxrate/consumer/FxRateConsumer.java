@@ -1,6 +1,5 @@
 package uk.co.dave.consumer.fxrate.consumer;
 
-import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.stream.annotation.StreamListener;
@@ -19,44 +18,19 @@ import uk.co.dave.consumer.fxrate.consumer.json.JsonFxRateEvent;
 @AllArgsConstructor
 public class FxRateConsumer {
 
- @StreamListener(FxRateConsumerBinding.FX_RATES_IN)
-  public void consume(final List<JsonFxRateEvent> events, @Headers MessageHeaders headers) {
-    log.info("jsonFxRateEvents = size={}", events.size());
-    Acknowledgment ack = headers.get(KafkaHeaders.ACKNOWLEDGMENT, Acknowledgment.class);
-    try {
-      ack.acknowledge();
-    } catch (Exception e) {
-      log.error("Acknowledgement error rolling back.", e);
-      throw e;
-    }
-  }
 
-  /**
-   * This does NOT work for the FxRateConsumerTest - is batch mode supported via spring cloud contract
-   * @param events
-   * @param headers
-   */
+@StreamListener(FxRateConsumerBinding.JSON_FX_RATES_IN)
+ public void consumeJson(JsonFxRateEvent event, @Headers MessageHeaders headers) {
+  Acknowledgment ack = headers.get(KafkaHeaders.ACKNOWLEDGMENT, Acknowledgment.class);
+  ack.acknowledge();
+   log.info("jsonFxRateEvent = event={},{}", event, ack);
+ }
+
   @StreamListener(FxRateConsumerBinding.AVRO_FX_RATES_IN)
-  public void consumeAvro(final List<AvroFxRateEvent> events, @Headers MessageHeaders headers) {
-    log.info("avroFxRateEvents = size={}, headers=", events.size(), headers);
+  public void consumeAvro(AvroFxRateEvent event, @Headers MessageHeaders headers) {
     Acknowledgment ack = headers.get(KafkaHeaders.ACKNOWLEDGMENT, Acknowledgment.class);
-    try {
-      ack.acknowledge();
-    } catch (Exception e) {
-      log.error("Acknowledgement error rolling back.", e);
-      throw e;
-    }
-  }
-  
-  /**
-   * This works OK for the FxRateConsumerTest
-   * @param events
-   * @param headers
-   */
-  //@StreamListener(FxRateConsumerBinding.AVRO_FX_RATES_IN)
-  public void consumeAvro(AvroFxRateEvent events, @Headers MessageHeaders headers) {
-    log.info("avroFxRateEvents = event={}", events, headers);
-  
+    ack.acknowledge();
+    log.info("avroFxRateEvent = event={},{}", event, ack);
   }
 
 }

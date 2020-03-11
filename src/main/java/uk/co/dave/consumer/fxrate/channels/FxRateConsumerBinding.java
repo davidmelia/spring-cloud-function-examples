@@ -5,15 +5,24 @@ import org.springframework.messaging.SubscribableChannel;
 
 public interface FxRateConsumerBinding {
 
+  String AVRO_FX_RATES_BATCH_IN = "avroFxRatesBatchIn";
+
+  @Input(AVRO_FX_RATES_BATCH_IN)
+  SubscribableChannel avroFxRatesBatchIn();
+  
   String AVRO_FX_RATES_IN = "avroFxRatesIn";
 
   @Input(AVRO_FX_RATES_IN)
   SubscribableChannel avroFxRatesIn();
 
 
-  String FX_RATES_IN = "fxRates2In";
+  String JSON_FX_RATES_BATCH_IN = "jsonFxRatesBatchIn";
 
-  @Input(FX_RATES_IN)
-  SubscribableChannel fxRates2In();
+  @Input(JSON_FX_RATES_BATCH_IN)
+  SubscribableChannel jsonFxRatesBatchIn();
 
+  String JSON_FX_RATES_IN = "jsonFxRatesIn";
+
+  @Input(JSON_FX_RATES_IN)
+  SubscribableChannel jsonFxRatesIn();
 }

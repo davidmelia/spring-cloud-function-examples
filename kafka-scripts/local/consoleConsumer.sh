@@ -1,1 +1,1 @@
-kafka-console-consumer --bootstrap-server localhost:9092 --topic testtock --from-beginning
+kafka-console-consumer --bootstrap-server localhost:9092 --topic json-fx-rate-events --from-beginning
