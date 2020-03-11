@@ -3,14 +3,14 @@ import org.springframework.cloud.contract.spec.Contract
 Contract.make {
     description('should send an fx rate')
 
-    label('triggerAvroFxRateBatchEvent')
+    label('triggerAvroFxRateBatchEventArrayHack')
     input {
-        triggeredBy('triggerAvroFxRateBatchEvent()')
+        triggeredBy('triggerAvroFxRateBatchEventArrayHack()')
     }
     outputMessage {
         sentTo('avro-fx-rate-batch-events')
         body(
-          
+           [
                 [
                     
 	                from: 'GBP',
@@ -18,8 +18,7 @@ Contract.make {
 	                rate: '1.23'
                     
                 ]
-            
-        	
+            ]         
         )
     }
 }

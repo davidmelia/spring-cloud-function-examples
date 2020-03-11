@@ -19,7 +19,7 @@ import uk.co.dave.consumer.fxrate.FxRateConsumerApplication;
 @SpringBootTest(classes = {FxRateConsumerApplication.class}, webEnvironment = WebEnvironment.NONE)
 @AutoConfigureStubRunner(stubsMode = StubsMode.CLASSPATH, ids = {"uk.co.dave:fx-producer:+:stubs"})
 @ActiveProfiles("consumer")
-public class FxRateBatchConsumerTest {
+public class FxRateConsumerSandpit {
 
   @Autowired
   private StubTrigger stubTrigger;
@@ -34,12 +34,12 @@ public class FxRateBatchConsumerTest {
   }
 
   @Test
-  public void testAvroFxRateBatchEvent() {
-    stubTrigger.trigger("triggerAvroFxRateBatchEvent");
+  public void testAvroFxRateEvent() {
+    stubTrigger.trigger("triggerAvroFxRateEvent");
   }
 
   @Test
-  public void testJsonFxRateBatchEvent() {
-    stubTrigger.trigger("triggerJsonFxRateBatchEvent");
+  public void testJsonFxRateEvent() {
+    stubTrigger.trigger("triggerJsonFxRateEvent");
   }
 }
