@@ -5,6 +5,7 @@ import static uk.co.dave.producer.fxrate.FxRateProducerBinding.AVRO_FX_RATE_OUT;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.time.LocalDateTime;
 import java.util.UUID;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -37,7 +38,7 @@ public class AvroFxRatePublisher {
   @Test
   public void sendAvroFxRateEventForever() throws InterruptedException {
     while (true) {
-      AvroFxRateEvent event =  AvroFxRateEvent.newBuilder().setFrom("USD").setTo("GBP").setRate(new BigDecimal(0.770045).setScale(6, RoundingMode.HALF_UP)).build();
+      AvroFxRateEvent event =  AvroFxRateEvent.newBuilder().setFrom("USD").setTo("GBP").setRate(new BigDecimal(0.770045).setScale(6, RoundingMode.HALF_UP)).setTimestamp(LocalDateTime.now().toString()).build();
       final Message<AvroFxRateEvent> message = MessageBuilder.withPayload(event).setHeaderIfAbsent(KafkaHeaders.MESSAGE_KEY, UUID.randomUUID().toString()).build();
       this.avroFxRateBatchOut.send(message);
       this.avroFxRateOut.send(message);
@@ -48,11 +49,19 @@ public class AvroFxRatePublisher {
 
   @Test
   public void sendLotsOfAvroFxRateEvents() throws InterruptedException {
-    for (int i = 0; i < 1; i++) {
-      AvroFxRateEvent event =  AvroFxRateEvent.newBuilder().setFrom("USD").setTo("GBP").setRate(new BigDecimal(0.770045).setScale(6, RoundingMode.HALF_UP)).build();
+    for (int i = 0; i < 10; i++) {
+      AvroFxRateEvent event =  AvroFxRateEvent.newBuilder().setFrom("USD").setTo("GBP").setRate(new BigDecimal(0.770045).setScale(6, RoundingMode.HALF_UP)).setTimestamp(LocalDateTime.now().toString()).build();
+      final Message<AvroFxRateEvent> message = MessageBuilder.withPayload(event).setHeaderIfAbsent(KafkaHeaders.MESSAGE_KEY, UUID.randomUUID().toString()).build();
+      this.avroFxRateOut.send(message);
+    }
+  }
+  
+  @Test
+  public void sendLotsOfBatchAvroFxRateEvents() throws InterruptedException {
+    for (int i = 0; i < 100000; i++) {
+      AvroFxRateEvent event =  AvroFxRateEvent.newBuilder().setFrom("USD").setTo("GBP").setRate(new BigDecimal(0.770045).setScale(6, RoundingMode.HALF_UP)).setTimestamp(LocalDateTime.now().toString()).build();
       final Message<AvroFxRateEvent> message = MessageBuilder.withPayload(event).setHeaderIfAbsent(KafkaHeaders.MESSAGE_KEY, UUID.randomUUID().toString()).build();
       this.avroFxRateBatchOut.send(message);
-      this.avroFxRateOut.send(message);
     }
   }
 
