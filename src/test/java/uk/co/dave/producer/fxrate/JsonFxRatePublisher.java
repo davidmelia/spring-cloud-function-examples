@@ -8,11 +8,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.cloud.stream.annotation.Output;
-import org.springframework.cloud.stream.test.binder.TestSupportBinderAutoConfiguration;
 import org.springframework.kafka.support.KafkaHeaders;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageChannel;
@@ -23,13 +21,13 @@ import uk.co.dave.consumer.fxrate.consumer.json.JsonFxRateEvent;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {FxRateProducerApplication.class}, webEnvironment = WebEnvironment.NONE)
-@EnableAutoConfiguration(exclude = TestSupportBinderAutoConfiguration.class)
+// @EnableAutoConfiguration(exclude = TestSupportBinderAutoConfiguration.class)
 @ActiveProfiles("producer")
 @Slf4j
 public class JsonFxRatePublisher {
   @Autowired
   private @Output(JSON_FX_RATE_BATCH_OUT) MessageChannel jsonFxRateBatchOut;
-  
+
   @Autowired
   private @Output(JSON_FX_RATE_OUT) MessageChannel jsonFxRateOut;
 

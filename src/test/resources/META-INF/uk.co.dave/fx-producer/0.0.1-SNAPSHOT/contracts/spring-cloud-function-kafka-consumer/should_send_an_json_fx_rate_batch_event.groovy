@@ -10,7 +10,7 @@ Contract.make {
     outputMessage {
         sentTo('json-fx-rate-batch-events')
         body(
-           [
+          
                 [
                     
 	                from: 'GBP',
@@ -18,8 +18,8 @@ Contract.make {
 	                rate: '1.23'
                     
                 ]
-            ]         
+            
+        	    
         )
     }
 }
-

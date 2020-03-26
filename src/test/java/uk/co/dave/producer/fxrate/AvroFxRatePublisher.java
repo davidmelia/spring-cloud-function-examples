@@ -11,11 +11,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.cloud.stream.annotation.Output;
-import org.springframework.cloud.stream.test.binder.TestSupportBinderAutoConfiguration;
 import org.springframework.kafka.support.KafkaHeaders;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageChannel;
@@ -26,7 +24,7 @@ import uk.co.dave.consumer.fxrate.consumer.avro.AvroFxRateEvent;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {FxRateProducerApplication.class}, webEnvironment = WebEnvironment.NONE)
-@EnableAutoConfiguration(exclude = TestSupportBinderAutoConfiguration.class)
+// @EnableAutoConfiguration(exclude = TestSupportBinderAutoConfiguration.class)
 @ActiveProfiles("producer")
 @Slf4j
 public class AvroFxRatePublisher {
@@ -38,7 +36,8 @@ public class AvroFxRatePublisher {
   @Test
   public void sendAvroFxRateEventForever() throws InterruptedException {
     while (true) {
-      AvroFxRateEvent event =  AvroFxRateEvent.newBuilder().setFrom("USD").setTo("GBP").setRate(new BigDecimal(0.770045).setScale(6, RoundingMode.HALF_UP)).setTimestamp(LocalDateTime.now().toString()).build();
+      AvroFxRateEvent event =
+          AvroFxRateEvent.newBuilder().setFrom("USD").setTo("GBP").setRate(new BigDecimal(0.770045).setScale(6, RoundingMode.HALF_UP)).setTimestamp(LocalDateTime.now().toString()).build();
       final Message<AvroFxRateEvent> message = MessageBuilder.withPayload(event).setHeaderIfAbsent(KafkaHeaders.MESSAGE_KEY, UUID.randomUUID().toString()).build();
       this.avroFxRateBatchOut.send(message);
       this.avroFxRateOut.send(message);
@@ -50,16 +49,18 @@ public class AvroFxRatePublisher {
   @Test
   public void sendLotsOfAvroFxRateEvents() throws InterruptedException {
     for (int i = 0; i < 10; i++) {
-      AvroFxRateEvent event =  AvroFxRateEvent.newBuilder().setFrom("USD").setTo("GBP").setRate(new BigDecimal(0.770045).setScale(6, RoundingMode.HALF_UP)).setTimestamp(LocalDateTime.now().toString()).build();
+      AvroFxRateEvent event =
+          AvroFxRateEvent.newBuilder().setFrom("USD").setTo("GBP").setRate(new BigDecimal(0.770045).setScale(6, RoundingMode.HALF_UP)).setTimestamp(LocalDateTime.now().toString()).build();
       final Message<AvroFxRateEvent> message = MessageBuilder.withPayload(event).setHeaderIfAbsent(KafkaHeaders.MESSAGE_KEY, UUID.randomUUID().toString()).build();
       this.avroFxRateOut.send(message);
     }
   }
-  
+
   @Test
   public void sendLotsOfBatchAvroFxRateEvents() throws InterruptedException {
     for (int i = 0; i < 100000; i++) {
-      AvroFxRateEvent event =  AvroFxRateEvent.newBuilder().setFrom("USD").setTo("GBP").setRate(new BigDecimal(0.770045).setScale(6, RoundingMode.HALF_UP)).setTimestamp(LocalDateTime.now().toString()).build();
+      AvroFxRateEvent event =
+          AvroFxRateEvent.newBuilder().setFrom("USD").setTo("GBP").setRate(new BigDecimal(0.770045).setScale(6, RoundingMode.HALF_UP)).setTimestamp(LocalDateTime.now().toString()).build();
       final Message<AvroFxRateEvent> message = MessageBuilder.withPayload(event).setHeaderIfAbsent(KafkaHeaders.MESSAGE_KEY, UUID.randomUUID().toString()).build();
       this.avroFxRateBatchOut.send(message);
     }
